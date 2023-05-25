@@ -11,14 +11,6 @@ const addCritic = reduceProperties("review_id", {
   updated_at: ["critic", null, "updated_at"],
 });
 
-// function list(movieId) {
-//   return knex("reviews as r")
-//     .join("critics as c", "r.critic_id", "c.critic_id")
-//     .select("*")
-//     .where({ movie_id: movieId })
-//     .then(addCritic);
-// }
-
 function list(movieId) {
   let query = knex("reviews as r").join("critics as c", "r.critic_id", "c.critic_id").select("*");
 
