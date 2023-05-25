@@ -34,18 +34,10 @@ async function update(req, res, next) {
     ...req.body.data,
     review_id: res.locals.review.review_id,
   };
-
-  const criticId = updatedReview.critic_id;
-  const critic = await service.getCritic(criticId);
-
+  const critic = await service.getCritic(updatedReview.critic_id);
   await service.update(updatedReview);
-
-  const update = await service.read(res.locals.review.review_id);
-
-  const data = update;
-
+  const data = await service.read(res.locals.review.review_id);
   data.critic = critic;
-
   res.json({ data });
 }
 
